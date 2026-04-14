@@ -1,0 +1,22 @@
+public class OOPSBannerApp {
+    public static void main(String[] args) {
+
+        String name = (args.length > 0 && !args[0].isEmpty()) ? args[0] : "World";
+
+        // UC5: Array declaration + initialization in ONE step using String.join()
+        String[] banner = {
+            String.join("", "***************"),
+            String.join("", "*             *"),
+            String.join("", "*   Hello     *"),
+            String.join("", "*   " + name + "   *"),
+            String.join("", "*             *"),
+            String.join("", "***************"),
+            String.join("", "")
+        };
+
+        // Enhanced for loop
+        for (String line : banner) {
+            System.out.println(line);
+        }
+    }
+}
