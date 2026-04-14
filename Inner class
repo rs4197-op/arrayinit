@@ -1,0 +1,85 @@
+import java.util.*;
+
+public class OOPSBannerUC7 {
+
+    // Class to hold character and its pattern
+    static class CharacterPattern {
+        private char character;
+        private String[] pattern;
+
+        public CharacterPattern(char character, String[] pattern) {
+            this.character = character;
+            this.pattern = pattern;
+        }
+
+        public String[] getPattern() {
+            return pattern;
+        }
+    }
+
+    // Static Inner Class for Pattern Mapping
+    static class CharacterPatternMap {
+        private static final Map<Character, CharacterPattern> patternMap = new HashMap<>();
+
+        static {
+            patternMap.put('O', new CharacterPattern('O', new String[]{
+                " *** ",
+                "*   *",
+                "*   *",
+                "*   *",
+                " *** "
+            }));
+
+            patternMap.put('P', new CharacterPattern('P', new String[]{
+                "**** ",
+                "*   *",
+                "**** ",
+                "*    ",
+                "*    "
+            }));
+
+            patternMap.put('S', new CharacterPattern('S', new String[]{
+                " ****",
+                "*    ",
+                " *** ",
+                "    *",
+                "**** "
+            }));
+        }
+
+        public static String[] getPattern(char ch) {
+            CharacterPattern cp = patternMap.get(ch);
+            return (cp != null) ? cp.getPattern() : new String[]{
+                "     ",
+                "     ",
+                "     ",
+                "     ",
+                "     "
+            };
+        }
+    }
+
+    public static void main(String[] args) {
+
+        String text = "OOPS";
+        List<String[]> banner = new ArrayList<>();
+
+        // Fetch patterns dynamically
+        for (char ch : text.toCharArray()) {
+            banner.add(CharacterPatternMap.getPattern(ch));
+        }
+
+        // Print row by row
+        int rows = banner.get(0).length;
+
+        for (int i = 0; i < rows; i++) {
+            StringBuilder line = new StringBuilder();
+
+            for (String[] letter : banner) {
+                line.append(letter[i]).append("  ");
+            }
+
+            System.out.println(line);
+        }
+    }
+}
